@@ -15,7 +15,7 @@
       margin: 0;
       padding: 0.75rem;
       line-height: 1.6;
-      color: #333;
+      color: #000;
       min-height: 100vh;
     }
     
@@ -26,11 +26,11 @@
     
     h1 {
       text-align: center;
-      color: white;
+      color: #000;
       font-size: 1.8rem;
       margin: 0.5rem 0 1.5rem 0;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      font-weight: 300;
+      text-shadow: 0 2px 4px rgba(255,255,255,0.3);
+      font-weight: 600;
     }
     
     details {
@@ -48,7 +48,7 @@
       padding: 1rem 1.2rem;
       font-weight: 600;
       background: linear-gradient(135deg, #ff7e5f, #feb47b);
-      color: white;
+      color: #000;
       border: none;
       font-size: 1.1rem;
       display: flex;
@@ -108,17 +108,20 @@
     .tappa {
       margin: 0.5rem 0;
       border-radius: 8px;
-      background: rgba(248, 250, 252, 0.8);
+      background: rgba(248, 250, 252, 0.9);
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     
     .tappa summary {
       background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-      color: #2d3748;
+      color: #000;
       padding: 0.75rem 1rem;
       font-size: 0.95rem;
       font-weight: 500;
       border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .tappa summary:hover {
@@ -129,7 +132,8 @@
     .content {
       padding: 1rem 1.2rem;
       font-size: 0.9rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
     }
     
     .content p {
@@ -163,10 +167,26 @@
     }
     
     .meta {
-      color: #718096;
+      color: #333;
       font-size: 0.8rem;
       margin: 0.5rem 0;
       font-weight: 500;
+    }
+    
+    .time-info {
+      font-size: 0.75rem;
+      color: #444;
+      font-weight: 400;
+      white-space: nowrap;
+      margin-left: 0.5rem;
+      background: rgba(255,255,255,0.7);
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+    }
+    
+    .tappa-name {
+      display: flex;
+      align-items: center;
     }
     
     /* Responsive design */
@@ -202,6 +222,11 @@
       .day-icon {
         font-size: 1.2rem;
       }
+      
+      .time-info {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.4rem;
+      }
     }
     
     @media (max-width: 480px) {
@@ -222,6 +247,9 @@
       .tappa summary {
         padding: 0.6rem 0.8rem;
         font-size: 0.85rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
       }
       
       .content {
@@ -237,34 +265,11 @@
         font-size: 0.75rem;
         padding: 0.3rem 0.6rem;
       }
-    }
-    
-    /* Dark mode support */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-      }
       
-      details {
-        background: rgba(45, 55, 72, 0.95);
-      }
-      
-      .content {
-        background: rgba(45, 55, 72, 0.8);
-        color: #e2e8f0;
-      }
-      
-      .tappa {
-        background: rgba(74, 85, 104, 0.8);
-      }
-      
-      .tappa summary {
-        background: linear-gradient(135deg, #4a5568, #2d3748);
-        color: #e2e8f0;
-      }
-      
-      .meta {
-        color: #a0aec0;
+      .time-info {
+        font-size: 0.65rem;
+        margin-left: 0;
+        align-self: flex-end;
       }
     }
     
@@ -301,10 +306,13 @@
   <h1>🌴 Itinerario Florida 2025 ☀️</h1>
 
 <details class="day-19">
-  <summary><span class="day-icon">🛬</span>Venerdì 19 dic - FtLauderdale</summary>
+  <summary><span class="day-icon">🛬</span>Venerdì 19 dic - Hollywood-FtLauderdale</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🛒</span>Walmart Supercenter</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛒</span>Walmart Supercenter</span>
+      <span class="time-info">07:30 - 08:30</span>
+    </summary>
     <div class="content">
       <p>Spesa veloce per snack e bibite.</p>
       <p class="meta">Distanza: 2.7 mi — 10 min</p>
@@ -313,7 +321,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌊</span>Hollywood Beach Broadwalk</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌊</span>Hollywood Beach Broadwalk</span>
+      <span class="time-info">08:40 - 09:40</span>
+    </summary>
     <div class="content">
       <p>Passeggiata sul lungomare con vista oceano.</p>
       <p class="meta">Distanza: 3.9 mi — 10 min</p>
@@ -322,7 +333,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎨</span>ArtsPark at Young Circle</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎨</span>ArtsPark at Young Circle</span>
+      <span class="time-info">09:50 - 10:50</span>
+    </summary>
     <div class="content">
       <p>Parco con installazioni artistiche e aree verdi.</p>
       <p class="meta">Distanza: 1.5 mi — 10 min</p>
@@ -331,7 +345,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍔</span>Moonlite Diner</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍔</span>Moonlite Diner</span>
+      <span class="time-info">11:00 - 12:30</span>
+    </summary>
     <div class="content">
       <p>Pranzo in diner anni '50 (burger, pancake).</p>
       <p class="meta">Distanza: 4.8 mi — 10 min</p>
@@ -340,7 +357,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌴</span>Dr. Von D. Mizell – Eula Johnson State Park</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌴</span>Dr. Von D. Mizell – Eula Johnson State Park</span>
+      <span class="time-info">12:40 - 13:40</span>
+    </summary>
     <div class="content">
       <p>Spiaggia e mangrovie; fauna marina.</p>
       <p class="meta">Distanza: 2.8 mi — 10 min</p>
@@ -349,7 +369,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🛍️</span>Fort Lauderdale Swap Shop</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛍️</span>Fort Lauderdale Swap Shop</span>
+      <span class="time-info">13:50 - 14:50</span>
+    </summary>
     <div class="content">
       <p>Mercatino delle pulci — souvenir e bancarelle.</p>
       <p class="meta">Distanza: 4.2 mi — 10 min</p>
@@ -358,7 +381,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🚶</span>Riverwalk Fort Lauderdale</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🚶</span>Riverwalk Fort Lauderdale</span>
+      <span class="time-info">15:00 - 17:00</span>
+    </summary>
     <div class="content">
       <p>Passeggiata lungo il New River con murales.</p>
       <p class="meta">Distanza: 5.0 mi — 10 min</p>
@@ -367,7 +393,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍽️</span>The Floridian (Las Olas)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍽️</span>The Floridian (Las Olas)</span>
+      <span class="time-info">17:10 - 18:10</span>
+    </summary>
     <div class="content">
       <p>Cena in diner storico su Las Olas Blvd.</p>
       <p class="meta">Distanza: 0.7 mi — 10 min</p>
@@ -376,7 +405,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🛥️</span>Carrie B Cruises</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛥️</span>Carrie B Cruises</span>
+      <span class="time-info">18:20 - 20:30</span>
+    </summary>
     <div class="content">
       <p>Crociera serale lungo il New River.</p>
       <p class="meta">Distanza: 0.8 mi — 10 min</p>
@@ -385,7 +417,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Best Western Plus Airport Hotel</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Best Western Plus Airport Hotel</span>
+      <span class="time-info">20:40 - 21:00</span>
+    </summary>
     <div class="content">
       <p>Check-in e relax in hotel (piscina, Wi-Fi).</p>
       <p class="meta">Distanza: 7.8 mi — 10 min</p>
@@ -398,7 +433,10 @@
   <summary><span class="day-icon">🏒</span>Sabato 20 dic - Sawgrass-Partita NHL</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Best Western Plus Airport Hotel</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Best Western Plus Airport Hotel</span>
+      <span class="time-info">07:50 - 09:20</span>
+    </summary>
     <div class="content">
       <p>Colazione in hotel e preparativi mattutini.</p>
       <p class="meta">Distanza: --</p>
@@ -407,7 +445,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎣</span>Deerfield Beach Pier</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎣</span>Deerfield Beach Pier</span>
+      <span class="time-info">09:30 - 11:00</span>
+    </summary>
     <div class="content">
       <p>Passeggiata sul molo e vista oceano.</p>
       <p class="meta">Distanza: 7.5 mi — 15 min</p>
@@ -416,7 +457,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🛍️</span>Mizner Park (Boca Raton)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛍️</span>Mizner Park (Boca Raton)</span>
+      <span class="time-info">11:20 - 12:50</span>
+    </summary>
     <div class="content">
       <p>Shopping e passeggiata nell'atmosfera natalizia.</p>
       <p class="meta">Distanza: 11.2 mi — 20 min</p>
@@ -425,7 +469,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🥤</span>Lester's Diner</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🥤</span>Lester's Diner</span>
+      <span class="time-info">13:10 - 14:40</span>
+    </summary>
     <div class="content">
       <p>Pranzo in diner retrò (hamburger, milkshake).</p>
       <p class="meta">Distanza: 10.5 mi — 20 min</p>
@@ -434,7 +481,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐊</span>Sawgrass Recreation Park</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐊</span>Sawgrass Recreation Park</span>
+      <span class="time-info">15:00 - 17:00</span>
+    </summary>
     <div class="content">
       <p>Tour in airboat e avvistamento alligatori.</p>
       <p class="meta">Distanza: 9.2 mi — 20 min</p>
@@ -443,7 +493,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🛒</span>Sawgrass Mills Mall</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛒</span>Sawgrass Mills Mall</span>
+      <span class="time-info">17:10 - 17:50</span>
+    </summary>
     <div class="content">
       <p>Shopping natalizio e souvenir.</p>
       <p class="meta">Distanza: 3.6 mi — 10 min</p>
@@ -452,7 +505,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏒</span>Amerant Bank Arena</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏒</span>Amerant Bank Arena</span>
+      <span class="time-info">17:30 - 19:30</span>
+    </summary>
     <div class="content">
       <p>Partita NHL dei Florida Panthers e cena.</p>
       <p class="meta">Distanza: 2.8 mi — 10 min</p>
@@ -461,7 +517,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Ritorno al Best Western Plus Airport Hotel</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Ritorno al Best Western Plus Airport Hotel</span>
+      <span class="time-info">19:40 - 20:00</span>
+    </summary>
     <div class="content">
       <p>Relax serale in hotel (piscina, Wi-Fi).</p>
       <p class="meta">Distanza: 5.2 mi — 10 min</p>
@@ -474,7 +533,10 @@
   <summary><span class="day-icon">🦣</span>Domenica 21 dic - Bethesda-Manatee</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Best Western Plus Ft Lauderdale Hollywood Airport Hotel</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Best Western Plus Ft Lauderdale Hollywood Airport Hotel</span>
+      <span class="time-info">06:30 - 07:15</span>
+    </summary>
     <div class="content">
       <p>Sveglia presto e colazione veloce in hotel.</p>
       <p class="meta">Distanza: --</p>
@@ -483,7 +545,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏛️</span>Cornell Art Museum at Old School Square (Delray Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏛️</span>Cornell Art Museum at Old School Square (Delray Beach)</span>
+      <span class="time-info">08:00 - 08:45</span>
+    </summary>
     <div class="content">
       <p>Visita esterna rapida al museo e passeggiata a Old School Square.</p>
       <p class="meta">Distanza: 17.5 mi — 28 min</p>
@@ -492,7 +557,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Palm Beach Island Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Palm Beach Island Beach</span>
+      <span class="time-info">09:00 - 10:30</span>
+    </summary>
     <div class="content">
       <p>Ricerca denti di squalo e conchiglie con i bambini.</p>
       <p class="meta">Distanza: 21.8 mi — 33 min</p>
@@ -501,7 +569,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">⛪</span>Bethesda-by-the-Sea (Palm Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">⛪</span>Bethesda-by-the-Sea (Palm Beach)</span>
+      <span class="time-info">11:00 - 12:00</span>
+    </summary>
     <div class="content">
       <p>Partecipazione alla messa domenicale e visita alla chiesa gotica.</p>
       <p class="meta">Distanza: 0.4 km — 2 min a piedi</p>
@@ -510,7 +581,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🥤</span>Surfside Diner (Palm Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🥤</span>Surfside Diner (Palm Beach)</span>
+      <span class="time-info">12:30 - 14:00</span>
+    </summary>
     <div class="content">
       <p>Pranzo in diner stile retrò (hamburger, milkshake).</p>
       <p class="meta">Distanza: 0.4 km — 2 min a piedi</p>
@@ -519,7 +593,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦣</span>Manatee Lagoon (West Palm Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦣</span>Manatee Lagoon (West Palm Beach)</span>
+      <span class="time-info">14:30 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Visita gratuita per osservare i lamantini e mostre interattive.</p>
       <p class="meta">Distanza: 7.0 mi — 15 min</p>
@@ -528,7 +605,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Juno Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Juno Beach</span>
+      <span class="time-info">16:30 - 18:30</span>
+    </summary>
     <div class="content">
       <p>Ricerca denti di squalo e conchiglie lungo la spiaggia.</p>
       <p class="meta">Distanza: 19.6 mi — 29 min</p>
@@ -537,7 +617,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌭</span>Long Doggers (Cocoa Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌭</span>Long Doggers (Cocoa Beach)</span>
+      <span class="time-info">19:00 - 20:00</span>
+    </summary>
     <div class="content">
       <p>Cena informale con hamburger, ali di pollo e kids' menu.</p>
       <p class="meta">Distanza: 104 mi — 1h 36 min</p>
@@ -546,7 +629,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Days Inn by Wyndham Cocoa Beach Port Canaveral</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Days Inn by Wyndham Cocoa Beach Port Canaveral</span>
+      <span class="time-info">20:00 - 20:30</span>
+    </summary>
     <div class="content">
       <p>Check-in serale e relax in hotel (piscina, Wi-Fi).</p>
       <p class="meta">Distanza: 0.7 mi — 3 min</p>
@@ -559,7 +645,10 @@
   <summary><span class="day-icon">🚀</span>Lunedì 22 dic - Space Coast-Kennedy</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Days Inn by Wyndham Cocoa Beach Port Canaveral</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Days Inn by Wyndham Cocoa Beach Port Canaveral</span>
+      <span class="time-info">07:45 - 08:15</span>
+    </summary>
     <div class="content">
       <p>Sveglia e colazione in hotel; prepararsi per il pier e il KSC.</p>
       <p class="meta">Distanza: --</p>
@@ -568,7 +657,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎣</span>Cocoa Beach Pier</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎣</span>Cocoa Beach Pier</span>
+      <span class="time-info">08:30 - 09:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata sul molo, foto dell'albero di Natale e vista sull'oceano.</p>
       <p class="meta">Distanza: 0.5 km — 10 min a piedi</p>
@@ -577,7 +669,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🚀</span>Kennedy Space Center Visitor Complex</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🚀</span>Kennedy Space Center Visitor Complex</span>
+      <span class="time-info">09:45 - 14:00</span>
+    </summary>
     <div class="content">
       <p>Shuttle Atlantis, Rocket Garden, bus tour alle piattaforme di lancio.</p>
       <p class="meta">Distanza: 12 mi — 20 min</p>
@@ -586,7 +681,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍽️</span>Steve's Family Diner (Titusville)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍽️</span>Steve's Family Diner (Titusville)</span>
+      <span class="time-info">14:15 - 15:15</span>
+    </summary>
     <div class="content">
       <p>Pranzo familiare con opzioni per bambini.</p>
       <p class="meta">Distanza: 5 mi — 10 min</p>
@@ -595,7 +693,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦅</span>Black Point Wildlife Drive (Merritt Island NWR)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦅</span>Black Point Wildlife Drive (Merritt Island NWR)</span>
+      <span class="time-info">15:30 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Percorso naturalistico in auto per birdwatching e avvistamento alligatori.</p>
       <p class="meta">Distanza: 7 mi — percorso in auto</p>
@@ -604,7 +705,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Smyrna Dunes Park</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Smyrna Dunes Park</span>
+      <span class="time-info">17:10 - 18:10</span>
+    </summary>
     <div class="content">
       <p>Passeggiate su passerelle, vista su Ponce Inlet Lighthouse e tramonto.</p>
       <p class="meta">Distanza: 37 mi — 40 min</p>
@@ -613,7 +717,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Hilton Daytona Beach Oceanfront Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Hilton Daytona Beach Oceanfront Resort</span>
+      <span class="time-info">18:30 - 19:00</span>
+    </summary>
     <div class="content">
       <p>Check-in e relax in hotel con vista oceano.</p>
       <p class="meta">Distanza: 12 mi — 20 min</p>
@@ -622,7 +729,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">⭐</span>Starlite Diner (Daytona Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">⭐</span>Starlite Diner (Daytona Beach)</span>
+      <span class="time-info">19:30 - 20:30</span>
+    </summary>
     <div class="content">
       <p>Cena in diner retrò con kids' menu e vista sul Boardwalk.</p>
       <p class="meta">Distanza: 0.1 km — 2 min a piedi</p>
@@ -635,7 +745,10 @@
   <summary><span class="day-icon">🏎️</span>Martedì 23 dic - Daytona-Disney</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Hilton Daytona Beach Oceanfront Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Hilton Daytona Beach Oceanfront Resort</span>
+      <span class="time-info">08:00 - 09:00</span>
+    </summary>
     <div class="content">
       <p>Colazione e check-out dall'hotel sul mare.</p>
       <p class="meta">Distanza: --</p>
@@ -644,7 +757,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏁</span>Daytona International Speedway</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏁</span>Daytona International Speedway</span>
+      <span class="time-info">09:15 - 11:15</span>
+    </summary>
     <div class="content">
       <p>Tour del circuito NASCAR e visita al museo.</p>
       <p class="meta">Distanza: 5 mi — 10 min</p>
@@ -653,7 +769,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍽️</span>Osphere Neighborhood Grill & Bar (Orlando)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍽️</span>Osphere Neighborhood Grill & Bar (Orlando)</span>
+      <span class="time-info">12:15 - 13:15</span>
+    </summary>
     <div class="content">
       <p>Pranzo vicino a Lake Eola con cucina americana.</p>
       <p class="meta">Distanza: 55 mi — 1 h</p>
@@ -662,7 +781,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦢</span>Lake Eola Park (Orlando)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦢</span>Lake Eola Park (Orlando)</span>
+      <span class="time-info">13:30 - 14:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata intorno al lago con i cigni e le decorazioni natalizie.</p>
       <p class="meta">Distanza: 0.6 mi — 12 min a piedi</p>
@@ -671,7 +793,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏰</span>Disney Springs (Orlando)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏰</span>Disney Springs (Orlando)</span>
+      <span class="time-info">15:00 - 17:30</span>
+    </summary>
     <div class="content">
       <p>Shopping, intrattenimento e atmosfera natalizia.</p>
       <p class="meta">Distanza: 21 mi — 30 min</p>
@@ -680,7 +805,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Ramada by Wyndham Tampa Westshore</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Ramada by Wyndham Tampa Westshore</span>
+      <span class="time-info">19:00 - 19:30</span>
+    </summary>
     <div class="content">
       <p>Check-in in hotel a Tampa.</p>
       <p class="meta">Distanza: 85 mi — 1 h 30 min</p>
@@ -689,7 +817,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍔</span>Shake Shack (Tampa Premium Outlets)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍔</span>Shake Shack (Tampa Premium Outlets)</span>
+      <span class="time-info">19:55 - 20:55</span>
+    </summary>
     <div class="content">
       <p>Cena con hamburger, patatine e milkshake.</p>
       <p class="meta">Distanza: 20 mi — 25 min</p>
@@ -699,10 +830,13 @@
 </details>
 
 <details class="day-24">
-  <summary><span class="day-icon">🎄</span>Martedì 24 dic - Tampa</summary>
+  <summary><span class="day-icon">🎄</span>Mercoledì 24 dic - Tampa</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Ramada by Wyndham Tampa Airport Westshore</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Ramada by Wyndham Tampa Airport Westshore</span>
+      <span class="time-info">08:00 - 09:00</span>
+    </summary>
     <div class="content">
       <p>Sveglia e colazione in hotel, preparativi per la giornata.</p>
       <p class="meta">Indirizzo: 1200 N Westshore Blvd, Tampa, FL 33607</p>
@@ -711,7 +845,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎨</span>Tampa Museum of Art</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎨</span>Tampa Museum of Art</span>
+      <span class="time-info">09:30 - 11:00</span>
+    </summary>
     <div class="content">
       <p>Mostre d'arte contemporanea e classica, attività interattive per bambini.</p>
       <p class="meta">Distanza: 0.5 km — 5 min</p>
@@ -720,7 +857,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🚶</span>Tampa Riverwalk & Curtis Hixon Waterfront Park</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🚶</span>Tampa Riverwalk & Curtis Hixon Waterfront Park</span>
+      <span class="time-info">11:15 - 12:15</span>
+    </summary>
     <div class="content">
       <p>Passeggiata lungo il fiume Hillsborough, foto con decorazioni natalizie e giochi per i bambini.</p>
       <p class="meta">Distanza: 1.0 km — 15 min</p>
@@ -729,7 +869,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍽️</span>Ulele</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍽️</span>Ulele</span>
+      <span class="time-info">12:30 - 14:00</span>
+    </summary>
     <div class="content">
       <p>Pranzo con cucina americana e influenze native, menù bambini, atmosfera festiva.</p>
       <p class="meta">Distanza: 0.5 km — 5 min</p>
@@ -738,7 +881,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏛️</span>Henry B. Plant Museum</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏛️</span>Henry B. Plant Museum</span>
+      <span class="time-info">14:15 - 15:15</span>
+    </summary>
     <div class="content">
       <p>Visita guidata di 1 ora nell'ex Tampa Bay Hotel, decorazioni natalizie e storie ferroviarie.</p>
       <p class="meta">Distanza: 0.5 km — 5 min</p>
@@ -747,7 +893,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌿</span>Weedon Island Preserve</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌿</span>Weedon Island Preserve</span>
+      <span class="time-info">15:30 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata sulle passerelle per osservare uccelli e mangrovie, giochi naturalistici per bambini.</p>
       <p class="meta">Distanza: 1.0 km — 15 min</p>
@@ -756,7 +905,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Bilmar Beach Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Bilmar Beach Resort</span>
+      <span class="time-info">17:00 - 18:00</span>
+    </summary>
     <div class="content">
       <p>Check-in, relax e passeggiata sulla spiaggia, foto del tramonto natalizio.</p>
       <p class="meta">Indirizzo: 10650 Gulf Blvd, St Pete Beach, FL 33706</p>
@@ -765,7 +917,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍔</span>Sloppy Joe's on the Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍔</span>Sloppy Joe's on the Beach</span>
+      <span class="time-info">18:30 - 19:30</span>
+    </summary>
     <div class="content">
       <p>Cena con hamburger, insalate e kids' menu, atmosfera festiva vista Golfo del Messico.</p>
       <p class="meta">Indirizzo: 10650 Gulf Blvd, St Pete Beach, FL 33706</p>
@@ -775,10 +930,13 @@
 </details>
 
 <details class="day-25">
-  <summary><span class="day-icon">🎅</span>Mercoledì 25 dic - Natale a St. Pete</summary>
+  <summary><span class="day-icon">🎅</span>Giovedì 25 dic - Natale a St. Pete</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Bilmar Beach Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Bilmar Beach Resort</span>
+      <span class="time-info">08:00 - 09:30</span>
+    </summary>
     <div class="content">
       <p>Sveglia e colazione in hotel. Preparare la macchina fotografica per St. Petersburg e verificare orari della messa natalizia.</p>
       <p class="meta">Indirizzo: 10650 Gulf Blvd, St Pete Beach, FL 33706</p>
@@ -787,7 +945,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">⛪</span>Santa Messa di Natale – St. Mary, Our Lady of Grace</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">⛪</span>Santa Messa di Natale – St. Mary, Our Lady of Grace</span>
+      <span class="time-info">10:00 - 11:00</span>
+    </summary>
     <div class="content">
       <p>Partecipazione alla messa natalizia delle 10:00. Ammirare l'architettura storica e le decorazioni festive.</p>
       <p class="meta">Distanza: ~6 mi, ~15 min</p>
@@ -796,7 +957,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🚶</span>Passeggiata nel centro di St. Petersburg</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🚶</span>Passeggiata nel centro di St. Petersburg</span>
+      <span class="time-info">11:15 - 12:00</span>
+    </summary>
     <div class="content">
       <p>Esplorazione del centro con decorazioni natalizie. Foto con Alex ed Erik vicino a murales o alberi di Natale.</p>
       <p class="meta">Distanza: ~0.8 km, ~12 min</p>
@@ -805,7 +969,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍽️</span>Pranzo a BellaBrava</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍽️</span>Pranzo a BellaBrava</span>
+      <span class="time-info">12:15 - 14:00</span>
+    </summary>
     <div class="content">
       <p>Pranzo natalizio con piatti italo-americani, menù per bambini, atmosfera festiva.</p>
       <p class="meta">Distanza: ~0.3 km, ~5 min</p>
@@ -814,7 +981,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Relax in spiaggia — Bilmar Beach Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Relax in spiaggia — Bilmar Beach Resort</span>
+      <span class="time-info">14:30 - 17:30</span>
+    </summary>
     <div class="content">
       <p>Tempo libero in famiglia: bagno, passeggiate, giochi sulla sabbia e foto del tramonto sul Golfo del Messico.</p>
       <p class="meta">Distanza: ~6 mi, ~15 min</p>
@@ -823,7 +993,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍔</span>Cena a Sloppy Joe's on the Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍔</span>Cena a Sloppy Joe's on the Beach</span>
+      <span class="time-info">18:00 - 19:30</span>
+    </summary>
     <div class="content">
       <p>Cena informale vista mare con hamburger, insalate e kids' menu.</p>
       <p class="meta">Indirizzo: 10650 Gulf Blvd, St Pete Beach, FL 33706</p>
@@ -833,10 +1006,13 @@
 </details>
 
 <details class="day-26">
-  <summary><span class="day-icon">🐚</span>Giovedì 26 dic - Sarasota-Spiagge</summary>
+  <summary><span class="day-icon">🐚</span>Venerdì 26 dic - Sarasota-Spiagge</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Partenza da Bilmar Beach Resort</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Partenza da Bilmar Beach Resort</span>
+      <span class="time-info">08:00 - 09:00</span>
+    </summary>
     <div class="content">
       <p>Check-out e preparativi: caricare teli e secchielli per shelling e verificare prenotazione per Venezia 1966.</p>
       <p class="meta">Indirizzo: 10650 Gulf Blvd, St Pete Beach, FL 33706</p>
@@ -845,7 +1021,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐚</span>Shelling ad Anna Maria Island (Bean Point / Coquina Beach)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐚</span>Shelling ad Anna Maria Island (Bean Point / Coquina Beach)</span>
+      <span class="time-info">09:45 - 12:00</span>
+    </summary>
     <div class="content">
       <p>Raccolta di conchiglie e denti di squalo, passeggiata panoramica e relax sulle spiagge.</p>
       <p class="meta">Distanza: ~35 mi — ~45 min (auto)</p>
@@ -854,7 +1033,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍕</span>Pranzo a Venezia 1966</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍕</span>Pranzo a Venezia 1966</span>
+      <span class="time-info">12:10 - 13:30</span>
+    </summary>
     <div class="content">
       <p>Pranzo italo-americano con pizza, pasta e piatti di mare, menù bambini e atmosfera familiare.</p>
       <p class="meta">Distanza: ~3 mi — ~10 min</p>
@@ -863,7 +1045,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌳</span>Passeggiata al centro di Sarasota (Payne Park)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌳</span>Passeggiata al centro di Sarasota (Payne Park)</span>
+      <span class="time-info">13:42 - 14:42</span>
+    </summary>
     <div class="content">
       <p>Passeggiata tra parchi con decorazioni festive, fontane, giochi per bambini e atmosfera serena.</p>
       <p class="meta">Distanza: ~5 mi — ~12 min</p>
@@ -872,7 +1057,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Relax a Siesta Key Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Relax a Siesta Key Beach</span>
+      <span class="time-info">15:02 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Relax sulla sabbia bianca, raccolta di conchiglie e bagni, con paesaggio marino mozzafiato.</p>
       <p class="meta">Distanza: ~10 mi — ~20 min</p>
@@ -881,7 +1069,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐚</span>Shelling a Nokomis Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐚</span>Shelling a Nokomis Beach</span>
+      <span class="time-info">16:55 - 17:55</span>
+    </summary>
     <div class="content">
       <p>Passeggiata per cercare conchiglie, gioco in acqua per i bambini e foto del tramonto.</p>
       <p class="meta">Distanza: ~15 mi — ~25 min</p>
@@ -890,7 +1081,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Check-in al Motel 6 Venice</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Check-in al Motel 6 Venice</span>
+      <span class="time-info">18:05 - 18:30</span>
+    </summary>
     <div class="content">
       <p>Check-in e relax in camera dopo una giornata intensa.</p>
       <p class="meta">Distanza: ~5 mi — ~10 min</p>
@@ -899,7 +1093,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍖</span>Cena frugale in zona (Gold Rush BBQ)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍖</span>Cena frugale in zona (Gold Rush BBQ)</span>
+      <span class="time-info">19:00 - 20:00</span>
+    </summary>
     <div class="content">
       <p>Cena informale con hamburger, insalate o menù bambini. Opzione take-away per rilassarsi in hotel.</p>
       <p class="meta">Distanza: ~0 mi (zona hotel)</p>
@@ -909,10 +1106,13 @@
 </details>
 
 <details class="day-27">
-  <summary><span class="day-icon">🦈</span>Venerdì 27 dic - Denti Squalo-Ford</summary>
+  <summary><span class="day-icon">🦈</span>Sabato 27 dic - Denti Squalo-Ford</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Motel 6 Venice</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Motel 6 Venice</span>
+      <span class="time-info">07:30 - 08:30</span>
+    </summary>
     <div class="content">
       <p>Check-out e preparativi per la giornata.</p>
       <p class="meta">Indirizzo: 281 US Hwy 41 Bypass N, Venice, FL 34285</p>
@@ -921,7 +1121,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦈</span>Venice Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦈</span>Venice Beach</span>
+      <span class="time-info">08:35 - 10:35</span>
+    </summary>
     <div class="content">
       <p>Passeggiata e raccolta denti di squalo con Alex ed Erik.</p>
       <p class="meta">Distanza: 1 mi — 5 min</p>
@@ -930,7 +1133,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦈</span>Caspersen Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦈</span>Caspersen Beach</span>
+      <span class="time-info">10:40 - 11:40</span>
+    </summary>
     <div class="content">
       <p>Caccia ai denti di squalo fossili e passeggiata lungo la riva.</p>
       <p class="meta">Distanza: 2 mi — 5 min</p>
@@ -939,7 +1145,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Manasota Key Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Manasota Key Beach</span>
+      <span class="time-info">11:55 - 13:25</span>
+    </summary>
     <div class="content">
       <p>Raccolta di conchiglie e giochi in acqua con Alex ed Erik.</p>
       <p class="meta">Distanza: 8 mi — 15 min</p>
@@ -948,7 +1157,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦐</span>Beachcomber Trading Post</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦐</span>Beachcomber Trading Post</span>
+      <span class="time-info">13:27 - 14:27</span>
+    </summary>
     <div class="content">
       <p>Pranzo semplice vicino alla spiaggia (hamburger, insalate, seafood).</p>
       <p class="meta">Distanza: 0.5 mi — 2 min</p>
@@ -957,7 +1169,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏡</span>Edison & Ford Winter Estates</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏡</span>Edison & Ford Winter Estates</span>
+      <span class="time-info">15:27 - 17:27</span>
+    </summary>
     <div class="content">
       <p>Visita alle case storiche e ai giardini, attività interattive per bambini.</p>
       <p class="meta">Distanza: 50 mi — 1 h</p>
@@ -966,7 +1181,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Fort Myers Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Fort Myers Beach</span>
+      <span class="time-info">17:42 - 18:42</span>
+    </summary>
     <div class="content">
       <p>Passeggiata sulla riva, giochi in acqua e foto del tramonto.</p>
       <p class="meta">Distanza: 7 mi — 15 min</p>
@@ -975,7 +1193,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🍔</span>Mel's Diner (Fort Myers)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🍔</span>Mel's Diner (Fort Myers)</span>
+      <span class="time-info">18:57 - 19:57</span>
+    </summary>
     <div class="content">
       <p>Cena retrò anni '50 con hamburger e milkshake.</p>
       <p class="meta">Distanza: 7 mi — 15 min</p>
@@ -984,7 +1205,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Americas Best Value Inn Fort Myers</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Americas Best Value Inn Fort Myers</span>
+      <span class="time-info">19:59 - 20:30</span>
+    </summary>
     <div class="content">
       <p>Check-in serale e relax in hotel.</p>
       <p class="meta">Distanza: 0.5 mi — 2 min</p>
@@ -997,7 +1221,10 @@
   <summary><span class="day-icon">🏀</span>Domenica 29 dic - Gita Barca e Basket NBA</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Hampton Inn Fort Myers</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Hampton Inn Fort Myers</span>
+      <span class="time-info">07:30 - 08:30</span>
+    </summary>
     <div class="content">
       <p>Sveglia e colazione in hotel o takeaway (es. Dunkin', ~$20-25). Preparazione bagagli da spiaggia e controllo biglietti Miami Heat.</p>
       <p class="meta">Indirizzo: 17010 Island Park Rd, Fort Myers, FL 33908</p>
@@ -1006,7 +1233,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎣</span>Naples Pier</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎣</span>Naples Pier</span>
+      <span class="time-info">09:10 - 11:10</span>
+    </summary>
     <div class="content">
       <p>Passeggiata gratuita sul molo con vista sul Golfo, osservazione di delfini e pellicani, giochi in spiaggia per Alex ed Erik.</p>
       <p class="meta">Distanza: 35 mi — 40 min</p>
@@ -1015,7 +1245,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🛒</span>Wynn's Market</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🛒</span>Wynn's Market</span>
+      <span class="time-info">11:14 - 11:30</span>
+    </summary>
     <div class="content">
       <p>Acquisto di panini, insalate, frutta e snack (~$25-35) per picnic a Tigertail Beach.</p>
       <p class="meta">Distanza: 1.5 mi — 4 min</p>
@@ -1024,7 +1257,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Tigertail Beach (Marco Island)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Tigertail Beach (Marco Island)</span>
+      <span class="time-info">11:50 - 13:30</span>
+    </summary>
     <div class="content">
       <p>Picnic in area attrezzata, giochi sulla sabbia e raccolta conchiglie non vive. Relax e foto.</p>
       <p class="meta">Distanza: 15 mi — 20 min (più 0.5 km a piedi, 10 min)</p>
@@ -1033,7 +1269,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐬</span>Dolphin Explorer (Marco Island)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐬</span>Dolphin Explorer (Marco Island)</span>
+      <span class="time-info">13:35 - 16:35</span>
+    </summary>
     <div class="content">
       <p>Tour in barca di 3 ore con osservazione garantita dei delfini e raccolta conchiglie guidata (~$100-120).</p>
       <p class="meta">Distanza: 2 mi — 5 min (più 0.3 km a piedi, 5 min)</p>
@@ -1042,7 +1281,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏀</span>Kaseya Center (Miami)</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏀</span>Kaseya Center (Miami)</span>
+      <span class="time-info">18:05 - 22:00</span>
+    </summary>
     <div class="content">
       <p>Arrivo per la partita NBA dei Miami Heat. Esplorazione arena, souvenir e attività per bambini. Partita con atmosfera spettacolare.</p>
       <p class="meta">Distanza: 57 mi — 1 h 30 min</p>
@@ -1051,7 +1293,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</span>
+      <span class="time-info">22:12 - 22:30</span>
+    </summary>
     <div class="content">
       <p>Check-in e relax in hotel con piscina riscaldata, Wi-Fi gratuito e riposo dopo la giornata intensa.</p>
       <p class="meta">Distanza: 5 mi — 12 min</p>
@@ -1064,7 +1309,10 @@
   <summary><span class="day-icon">🗝️</span>Lunedì 30 dic - Key West</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</span>
+      <span class="time-info">07:00 - 08:00</span>
+    </summary>
     <div class="content">
       <p>Sveglia e partenza presto. Colazione veloce in hotel (~$20-25). Controllo meteo e caricamento auto.</p>
       <p class="meta">Indirizzo: 124 E Palm Dr, Florida City, FL 33034</p>
@@ -1073,7 +1321,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Sombrero Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Sombrero Beach</span>
+      <span class="time-info">09:00 - 10:30</span>
+    </summary>
     <div class="content">
       <p>Ricerca conchiglie e nuotata con i bambini. Foto delle palme e del mare.</p>
       <p class="meta">Distanza: 46.0 mi — 1h 00min</p>
@@ -1082,7 +1333,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦌</span>National Key Deer Refuge</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦌</span>National Key Deer Refuge</span>
+      <span class="time-info">11:10 - 12:10</span>
+    </summary>
     <div class="content">
       <p>Osservazione cervi delle Keys, sentieri educativi e foto della fauna locale.</p>
       <p class="meta">Distanza: 29.0 mi — 40min</p>
@@ -1091,7 +1345,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌿</span>No Name Key</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌿</span>No Name Key</span>
+      <span class="time-info">12:20 - 13:00</span>
+    </summary>
     <div class="content">
       <p>Passeggiata fotografica tranquilla con bambini, fauna e cervi.</p>
       <p class="meta">Distanza: 2.0 mi — 10min</p>
@@ -1100,7 +1357,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🦐</span>Two Friends Patio Restaurant</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🦐</span>Two Friends Patio Restaurant</span>
+      <span class="time-info">13:40 - 15:00</span>
+    </summary>
     <div class="content">
       <p>Pranzo con conch fritters, hamburger e kids' meal per i bambini (~$35-40).</p>
       <p class="meta">Distanza: 30.0 mi — 40min</p>
@@ -1109,7 +1369,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">📍</span>Southernmost Point U.S.A.</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">📍</span>Southernmost Point U.S.A.</span>
+      <span class="time-info">15:10 - 15:30</span>
+    </summary>
     <div class="content">
       <p>Foto di famiglia davanti al monumento e vista oceano.</p>
       <p class="meta">Distanza: 1.8 mi — 10min</p>
@@ -1118,7 +1381,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎨</span>Bahama Village</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎨</span>Bahama Village</span>
+      <span class="time-info">15:40 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata tra negozi e murales colorati. Souvenir e foto culturali.</p>
       <p class="meta">Distanza: 0.5 mi — 10min</p>
@@ -1127,7 +1393,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🎭</span>Mallory Square</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🎭</span>Mallory Square</span>
+      <span class="time-info">16:40 - 18:00</span>
+    </summary>
     <div class="content">
       <p>Artisti di strada, negozi di souvenir e tramonto sul porto.</p>
       <p class="meta">Distanza: 0.7 mi — 10min</p>
@@ -1136,7 +1405,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌉</span>Seven Mile Bridge</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌉</span>Seven Mile Bridge</span>
+      <span class="time-info">19:00 - 19:30</span>
+    </summary>
     <div class="content">
       <p>Foto e passeggiata serale sul ponte iconico (portare torcia).</p>
       <p class="meta">Distanza: 52.0 mi — 1h 00min</p>
@@ -1145,7 +1417,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐟</span>Mrs. Mac's Kitchen</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐟</span>Mrs. Mac's Kitchen</span>
+      <span class="time-info">19:50 - 20:50</span>
+    </summary>
     <div class="content">
       <p>Cena con fish sandwich, hamburger e kids' meal (~$30-40).</p>
       <p class="meta">Distanza: 20.0 mi — 20min</p>
@@ -1154,7 +1429,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Ritorno al Days Inn by Wyndham Florida City</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Ritorno al Days Inn by Wyndham Florida City</span>
+      <span class="time-info">21:50 - 22:30</span>
+    </summary>
     <div class="content">
       <p>Rilassarsi in piscina, usare il Wi-Fi e preparare i bagagli per Capodanno.</p>
       <p class="meta">Distanza: 56.0 mi — 1h 00min</p>
@@ -1167,7 +1445,10 @@
   <summary><span class="day-icon">🌆</span>Martedì 31 dic - Miami Downtown</summary>
 
   <details class="tappa">
-    <summary><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏨</span>Days Inn by Wyndham Florida City</span>
+      <span class="time-info">08:00 - 09:00</span>
+    </summary>
     <div class="content">
       <p>Sveglia e partenza presto. Colazione veloce in hotel (~$20-25). Controllo meteo e caricamento auto.</p>
       <p class="meta">Indirizzo: 124 E Palm Dr, Florida City, FL 33034</p>
@@ -1176,7 +1457,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🐓</span>Little Havana</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🐓</span>Little Havana</span>
+      <span class="time-info">09:15 - 11:00</span>
+    </summary>
     <div class="content">
       <p>Passeggiata su Calle Ocho, visita al Domino Park e sosta per caffè cubano. "Caccia al gallo" tra i murales.</p>
       <p class="meta">Distanza: 1 km — 15min</p>
@@ -1185,7 +1469,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">⛵</span>Bayside Marketplace</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">⛵</span>Bayside Marketplace</span>
+      <span class="time-info">11:10 - 12:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata tra negozi e bancarelle con decorazioni natalizie. Vista sul porto e sosta al Bayfront Park.</p>
       <p class="meta">Distanza: 1 km — 10min</p>
@@ -1194,7 +1481,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🌮</span>Landshark Bar & Grill</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🌮</span>Landshark Bar & Grill</span>
+      <span class="time-info">12:30 - 14:00</span>
+    </summary>
     <div class="content">
       <p>Pranzo con hamburger, tacos e kids' meal (~$40-60). Vista sulla baia e atmosfera tropicale.</p>
       <p class="meta">Indirizzo: 401 Biscayne Blvd Suite R103, Miami, FL 33132</p>
@@ -1203,7 +1493,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏖️</span>Ocean Drive & South Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏖️</span>Ocean Drive & South Beach</span>
+      <span class="time-info">14:05 - 16:30</span>
+    </summary>
     <div class="content">
       <p>Passeggiata tra edifici Art Deco, conchiglie sulla spiaggia e foto al Versace Mansion. Gelati (~$10-15).</p>
       <p class="meta">Distanza: 0.5 km — 5min</p>
@@ -1212,7 +1505,10 @@
   </details>
         
   <details class="tappa">
-    <summary><span class="tappa-icon">🏠</span>Airbnb Miami Beach</summary>
+    <summary>
+      <span class="tappa-name"><span class="tappa-icon">🏠</span>Airbnb Miami Beach</span>
+      <span class="time-info">16:45 - 18:00</span>
+    </summary>
     <div class="content">
       <p>Check-in e relax con piscina e Wi-Fi. Preparativi per i festeggiamenti di Capodanno.</p>
       <p class="meta">Zona: tra 27th St e Collins Ave, Miami Beach, FL 33140</p>

@@ -1,0 +1,228 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grafico Interattivo Economia Familiare e Utile Ditta</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { display: flex; justify-content: space-between; }
+        .slider-container { margin: 15px 0; width: 300px; }
+        .scenario-container { margin: 15px 20px; width: 250px; }
+        .note-container { margin: 15px 0; width: 250px; }
+        canvas { max-width: 900px; margin-top: 20px; }
+        h1 { text-align: center; }
+        label { font-weight: bold; }
+        .scenario-container label { display: block; margin-bottom: 10px; }
+        #note { width: 100%; height: 100px; font-size: 12px; resize: none; }
+    </style>
+</head>
+<body>
+    <h1>Impatto su Imposte, Netto Familiare e Utile Ditta</h1>
+    
+    <div class="container">
+        <div class="slider-container">
+            <label for="incassi_residui">Incassi Residui 2025 (CHF): <span id="incassi_residui_value">80000</span></label><br>
+            <input type="range" id="incassi_residui" min="20000" max="100000" step="5000" value="80000">
+            <label for="stipendio">Stipendio Andrea (CHF): <span id="stip_value">160000</span></label><br>
+            <input type="range" id="stipendio" min="160000" max="240000" step="10000" value="160000">
+            <label for="lpp_andrea">Versamenti Extra LPP Andrea (CHF): <span id="lpp_andrea_value">0</span></label><br>
+            <input type="range" id="lpp_andrea" min="0" max="150000" step="5000" value="0">
+            <label for="lpp_stefania">Versamenti Extra LPP Stefania (CHF): <span id="lpp_stefania_value">0</span></label><br>
+            <input type="range" id="lpp_stefania" min="0" max="150000" step="5000" value="0">
+        </div>
+        
+        <div class="scenario-container">
+            <label><input type="radio" name="scenario" value="max_private"> Massimo Risparmio Imposte Private</label>
+            <label><input type="radio" name="scenario" value="max_company"> Massimo Risparmio Imposte Ditta</label>
+            <label><input type="radio" name="scenario" value="general"> Più Convenienza Generale</label>
+            <label><input type="radio" name="scenario" value="grok"> Ottimizzazione Grok</label>
+        </div>
+        
+        <div class="note-container">
+            <label for="note">Nota Personalizzabile:</label><br>
+            <textarea id="note">Netto Familiare: reddito lordo totale (Andrea + Stefania) meno oneri sociali (AVS, AD, LPP base ed extra) e imposte familiari (reddito, sostanza 0,2% su 1,1M CHF, ecclesiastica 0,25%). Deduzioni: interessi ipotecari, asilo, figli, coniugati.</textarea>
+        </div>
+    </div>
+    
+    <canvas id="myChart"></canvas>
+    
+    <script>
+        const stipBase = 160000;
+        const redditoStef = 150741;
+        const tassoCorporate = 0.1625; // 16,25% (19.660 CHF su 121.000 CHF)
+        const tassoOneri = 0.1063; // AVS+AD+LPP base
+        const dedFisse = 11000 + 20000 + 13600 + 2800 + 19800; // Interessi, asilo, figli, married, cantonale
+        const fattoreOneriDatore = 1.1364; // Oneri datore ~13.64%
+        
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Imposte Ditta', 'Imposte Familiari', 'Somma Imposte', 'Netto Familiare', 'Utile Ante Imposte Ditta'],
+                datasets: [{
+                    label: 'Valori (CHF)',
+                    data: [0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Imposte ditta
+                        'rgba(54, 162, 235, 0.2)', // Imposte familiari
+                        'rgba(255, 206, 86, 0.2)', // Somma imposte
+                        'rgba(75, 192, 192, 0.2)', // Netto familiare
+                        'rgba(255, 159, 64, 0.2)'  // Utile ditta
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 206, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(255, 159, 64)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Valore (CHF)' },
+                        ticks: { callback: value => value.toLocaleString() }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, position: 'top' },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: value => value.toLocaleString(),
+                        font: { weight: 'bold', size: 12 }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+        
+        function calculateEffectiveRate(imponibile) {
+            if (imponibile <= 100000) return 0.1221;
+            else if (imponibile <= 300000) return 0.1221 + (0.2501 - 0.1221) * (imponibile - 100000) / 200000;
+            else return 0.2501 + (0.3110 - 0.2501) * (imponibile - 300000) / 700000;
+        }
+        
+        function updateChart() {
+            const stipAndrea = parseInt(document.getElementById('stipendio').value);
+            const lppAndrea = parseInt(document.getElementById('lpp_andrea').value);
+            const lppStefania = parseInt(document.getElementById('lpp_stefania').value);
+            const incassiResidui = parseInt(document.getElementById('incassi_residui').value);
+            
+            document.getElementById('stip_value').textContent = stipAndrea.toLocaleString();
+            document.getElementById('lpp_andrea_value').textContent = lppAndrea.toLocaleString();
+            document.getElementById('lpp_stefania_value').textContent = lppStefania.toLocaleString();
+            document.getElementById('incassi_residui_value').textContent = incassiResidui.toLocaleString();
+            
+            // Calcolo utile ditta
+            const deltaStip = stipAndrea - stipBase;
+            const utileNuovo = Math.max(0, 0.994375 * incassiResidui + 21562.5 - fattoreOneriDatore * deltaStip);
+            const imposteDitta = utileNuovo * tassoCorporate;
+            
+            // Calcolo imposte familiari e netto
+            const oneriAndrea = stipAndrea * tassoOneri + lppAndrea;
+            const oneriStef = redditoStef * tassoOneri + lppStefania;
+            const lordoTot = stipAndrea + redditoStef;
+            const imponibile = Math.max(0, lordoTot - oneriAndrea - oneriStef - dedFisse);
+            
+            const rate = calculateEffectiveRate(imponibile);
+            const imposteFam = rate * imponibile + 0.002 * 1100000 + 0.0025 * imponibile; // Sostanza + eccl
+            
+            const sommaImposte = imposteDitta + imposteFam;
+            const nettoFam = lordoTot - (oneriAndrea + oneriStef) - imposteFam;
+            
+            chart.data.datasets[0].data = [
+                imposteDitta.toFixed(0),
+                imposteFam.toFixed(0),
+                sommaImposte.toFixed(0),
+                nettoFam.toFixed(0),
+                utileNuovo.toFixed(0)
+            ];
+            chart.update();
+        }
+        
+        // Gestione scenari
+        const scenarios = {
+            'max_private': { stipendio: 160000, lpp_andrea: 150000, lpp_stefania: 150000, incassi_residui: 20000 },
+            'max_company': { stipendio: 240000, lpp_andrea: 0, lpp_stefania: 0, incassi_residui: 100000 },
+            'general': { stipendio: 180000, lpp_andrea: 100000, lpp_stefania: 100000, incassi_residui: 80000 },
+            'grok': { stipendio: 200000, lpp_andrea: 75000, lpp_stefania: 75000, incassi_residui: 85000 }
+        };
+        
+        document.querySelectorAll('input[name="scenario"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const scenario = scenarios[radio.value];
+                document.getElementById('stipendio').value = scenario.stipendio;
+                document.getElementById('lpp_andrea').value = scenario.lpp_andrea;
+                document.getElementById('lpp_stefania').value = scenario.lpp_stefania;
+                document.getElementById('incassi_residui').value = scenario.incassi_residui;
+                updateChart();
+            });
+        });
+        
+        // Deseleziona pallino quando si usano gli slider
+        document.getElementById('stipendio').addEventListener('input', () => {
+            document.querySelectorAll('input[name="scenario"]').forEach(radio => radio.checked = false);
+            updateChart();
+        });
+        document.getElementById('lpp_andrea').addEventListener('input', () => {
+            document.querySelectorAll('input[name="scenario"]').forEach(radio => radio.checked = false);
+            updateChart();
+        });
+        document.getElementById('lpp_stefania').addEventListener('input', () => {
+            document.querySelectorAll('input[name="scenario"]').forEach(radio => radio.checked = false);
+            updateChart();
+        });
+        document.getElementById('incassi_residui').addEventListener('input', () => {
+            document.querySelectorAll('input[name="scenario"]').forEach(radio => radio.checked = false);
+            updateChart();
+        });
+        
+        updateChart(); // Calcolo iniziale
+    </script>
+</body>
+</html>
